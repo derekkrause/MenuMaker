@@ -1,3 +1,4 @@
+using MenuMaker.Services;
 using System;
 
 using Unity;
@@ -43,7 +44,7 @@ namespace MenuMaker
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
 
-            
+            container.RegisterType<IRecipeService, RecipeService>();
         }
     }
 }

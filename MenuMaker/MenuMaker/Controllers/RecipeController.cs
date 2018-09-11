@@ -11,7 +11,12 @@ namespace MenuMaker.Controllers
     [RoutePrefix("api/recipes")]
     public class RecipeController : ApiController
     {
-        readonly RecipeService recipeService = new RecipeService();
+        readonly IRecipeService recipeService;
+
+        public RecipeController(IRecipeService recipeService)
+        {
+            this.recipeService = recipeService;
+        }
 
         [HttpGet, Route]
         public List<Recipe> GetAll()

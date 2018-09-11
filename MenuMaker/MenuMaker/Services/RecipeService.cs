@@ -48,26 +48,21 @@ namespace MenuMaker.Services
             }
         }
 
-        public int Create(RecipeCreate request)
+        public int Create(RecipeCreate recipe)
         {
             using (var con = GetConnection())
             {
                 var cmd = con.CreateCommand();
                 cmd.CommandText = "Recipe_Create";
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@title", request.Title);
-                cmd.Parameters.AddWithValue("@ingredient", request.Ingredient);
+                cmd.Parameters.AddWithValue("@title", recipe.Title);
+                cmd.Parameters.AddWithValue("@ingredient", recipe.Ingredient);
                 cmd.Parameters.Add("@id", SqlDbType.Int).Direction = ParameterDirection.Output;
 
                 cmd.ExecuteNonQuery();
 
                 return (int)cmd.Parameters["@id"].Value;
             }
-        }
-
-        public int Create()
-        {
-            throw new NotImplementedException();
         }
     }
 }
