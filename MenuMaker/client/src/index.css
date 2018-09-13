@@ -6,6 +6,11 @@ html {
   color: tan;
 }
 
+.card {
+  max-width: 400px;
+  margin-top: 20px;
+}
+
 .navIcon {
   background-color: white;
   height: 38px;
@@ -21,7 +26,23 @@ html {
   padding-right: 6px;
 }
 
-.landingContainer {
+.btn-outline-primary {
+  color: tan;
+  border-color: tan;
+  background-color: white;
+}
+
+.btn-outline-primary:hover {
+  color: saddlebrown;
+  border-color: saddlebrown;
+  background-color: white;
+}
+.input {
+  border-color: tan;
+}
+
+.landingContainer,
+.mainContainer {
   background-attachment: fixed;
   background-position: left;
   background-size: cover;
@@ -41,4 +62,23 @@ span.border {
   padding: 18px;
   font-size: 25px;
   letter-spacing: 6px;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari */
+  color: rgb(185, 184, 184) !important;
+  opacity: 1;
+  font-style: italic;
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: rgb(185, 184, 184) !important;
+  font-style: italic;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: rgb(185, 184, 184) !important;
+  font-style: italic;
 }

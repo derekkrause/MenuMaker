@@ -1,14 +1,15 @@
 import React from "react";
-import Header from "./Header";
-import Body from "./Body";
+import Header from "../Components/Header";
+import Body from "../Components/Body";
 
 class MainPage extends React.Component {
   render() {
     return (
-      <React.Fragment>
+      <div>
         <Header />
         <Body />
-      </React.Fragment>
+      </div>
     );
   }
 }
+export default MainPage;
