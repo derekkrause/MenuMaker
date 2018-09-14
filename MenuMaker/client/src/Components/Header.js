@@ -1,7 +1,7 @@
 import React from "react";
-import { Button, ButtonGroup, Input, Navbar, NavbarBrand } from "reactstrap";
+import { Button, ButtonGroup, Navbar, NavbarBrand } from "reactstrap";
 
-class Header extends React.Component {
+class Header extends React.PureComponent {
   render() {
     return (
       <Navbar color="dark" dark>

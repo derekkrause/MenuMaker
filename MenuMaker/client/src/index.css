@@ -3,7 +3,33 @@ html {
   margin: 0;
   font-family: sans-serif;
   height: 100%;
-  color: tan;
+  color: black;
+}
+
+a.float-right {
+  color: cadetblue;
+  -webkit-appearance: none;
+  font-size: small;
+  font-style: normal;
+}
+
+small {
+  font-style: italic;
+  color: darkslategray;
+}
+
+ul {
+  padding-left: inherit;
+  padding-top: 8px;
+  list-style-type: circle;
+}
+
+li {
+  border-bottom-color: cadetblue;
+  border-bottom-width: thin;
+  border-bottom-style: solid;
+  padding-top: 4px;
+  font-style: italic;
 }
 
 .card {
@@ -19,6 +45,18 @@ html {
   padding: 1px;
 }
 
+.btn-outline-success {
+  color: darkgreen;
+  border-color: darkgreen;
+  background-color: wheat;
+}
+
+.btn-outline-success:hover {
+  color: darkgreen;
+  border-color: darkgreen;
+  background-color: aquamarine;
+}
+
 .btn-outline-secondary {
   border-color: transparent;
   border-radius: 50% !important;
@@ -27,18 +65,19 @@ html {
 }
 
 .btn-outline-primary {
-  color: tan;
-  border-color: tan;
+  color: darkslategray;
+  border-color: darkslategray;
   background-color: white;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 0px;
 }
 
 .btn-outline-primary:hover {
-  color: saddlebrown;
-  border-color: saddlebrown;
+  color: green;
+  border-color: black;
   background-color: white;
-}
-.input {
-  border-color: tan;
 }
 
 .landingContainer,
@@ -48,6 +87,14 @@ html {
   background-size: cover;
   position: absolute;
   height: 100%;
+}
+
+.form-control {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-color: darkslategray;
+  border-radius: 0px;
 }
 
 .title {
@@ -62,6 +109,10 @@ span.border {
   padding: 18px;
   font-size: 25px;
   letter-spacing: 6px;
+}
+
+span.border:hover {
+  cursor: pointer;
 }
 
 ::placeholder {
