@@ -1,6 +1,7 @@
 import React from "react";
 import RecipeSearch from "./RecipeSearch";
 import IngredientSearch from "./IngredientSearch";
+import SearchResults from "./SearchResults";
 
 class Body extends React.Component {
   render() {
@@ -10,8 +11,13 @@ class Body extends React.Component {
         style={{ backgroundImage: "url('https://image.ibb.co/i2ajS9/hardwood_material_rough_935875.jpg')" }}
       >
         <div className="mainBody">
-          <RecipeSearch />
-          <IngredientSearch />
+          <div className="col">
+            <RecipeSearch />
+            <IngredientSearch />
+          </div>
+          <div className="col">
+            <SearchResults />
+          </div>
         </div>
       </div>
     );

@@ -1,5 +1,4 @@
 import React from "react";
-import { recipe_getAll, recipe_search } from "../server";
 import { Card, CardTitle, Input, Button } from "reactstrap";
 
 class IngredientSearch extends React.Component {

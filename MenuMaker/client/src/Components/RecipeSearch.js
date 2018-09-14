@@ -4,7 +4,8 @@ import { Card, CardTitle, Input, Button } from "reactstrap";
 
 class RecipeSearch extends React.Component {
   state = {
-    search: ""
+    search: "",
+    recipes: []
   };
 
   onChange = e => {
@@ -12,8 +13,7 @@ class RecipeSearch extends React.Component {
   };
   search = () => {
     if (this.state.search === "") {
-      const recipeResults = recipe_getAll();
-      recipeResults.then(res => console.log("get all", res));
+      recipe_getAll().then(res => this.setState({ recipes: res.data }));
     } else {
       recipe_search(this.state.search, 1).then(res => console.log("search", res));
     }
@@ -48,4 +48,5 @@ class RecipeSearch extends React.Component {
     );
   }
 }
+
 export default RecipeSearch;

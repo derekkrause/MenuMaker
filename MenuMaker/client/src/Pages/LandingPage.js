@@ -4,7 +4,6 @@ import "../index.css";
 class LandingPage extends React.Component {
   handleClick = () => {
     this.props.history.push("/main");
-    console.log("clicked");
   };
 
   render() {
