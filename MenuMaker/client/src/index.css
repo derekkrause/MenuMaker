@@ -4,6 +4,7 @@ html {
   font-family: sans-serif;
   height: 100%;
   color: black;
+  overflow: auto;
 }
 
 a.float-right {

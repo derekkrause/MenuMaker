@@ -1,10 +1,19 @@
 import React from "react";
-import { Card } from "reactstrap";
+import { connect } from "react-redux";
 
 class SearchResults extends React.Component {
+  state = {
+    recipes: []
+  };
+
   render() {
-    const { results } = this.props;
+    const { recipes } = this.state;
     return <div />;
   }
 }
-export default SearchResults;
+
+function mapStateToProps(state) {
+  return { recipes: state.recipes };
+}
+
+export default connect(mapStateToProps)(SearchResults);

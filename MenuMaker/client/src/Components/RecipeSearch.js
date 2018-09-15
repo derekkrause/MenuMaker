@@ -1,6 +1,7 @@
 import React from "react";
+import { connect } from "react-redux";
 import { recipe_getAll, recipe_search } from "../server";
-import { Card, CardTitle, Input, Button } from "reactstrap";
+import { Card, CardTitle, Input } from "reactstrap";
 
 class RecipeSearch extends React.Component {
   state = {
@@ -11,12 +12,17 @@ class RecipeSearch extends React.Component {
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
+
   search = () => {
     if (this.state.search === "") {
-      recipe_getAll().then(res => this.setState({ recipes: res.data }));
+      recipe_getAll().then(res => this.setState({ recipes: res.data }, this.sendStateToProps));
     } else {
-      recipe_search(this.state.search, 1).then(res => console.log("search", res));
+      recipe_search(this.state.search, 1).then(res => this.setState({ recipes: res.data }, this.sendStateToProps));
     }
+  };
+
+  sendStateToProps = () => {
+    this.props.addRecipe(this.state.recipes);
   };
 
   render() {
@@ -49,4 +55,13 @@ class RecipeSearch extends React.Component {
   }
 }
 
-export default RecipeSearch;
+function mapDispatchToProps(dispatch) {
+  return {
+    addRecipe: recipe => dispatch({ type: "ADD_RECIPE", payload: recipe })
+  };
+}
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(RecipeSearch);
