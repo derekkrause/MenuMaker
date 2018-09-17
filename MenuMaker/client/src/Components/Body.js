@@ -13,7 +13,7 @@ class Body extends React.Component {
         <div className="mainBody">
           <RecipeSearch />
           <IngredientSearch />
-          <SearchResults {...this.props} />
+          {/* <SearchResults {...this.props} /> */}
         </div>
       </div>
     );

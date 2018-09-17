@@ -5,6 +5,7 @@ import { Card, CardImg, CardBody, CardTitle, CardSubtitle, CardText } from "reac
 class SearchResults extends React.Component {
   menuPicker = () => {
     const recipes = [];
+    debugger;
     if (this.props.recipes.length === 1) {
       recipes.push({
         title: "Jalapeno Popper Grilled Cheese Sandwich",
@@ -19,12 +20,13 @@ class SearchResults extends React.Component {
   };
 
   render() {
-    const menu = this.menuPicker;
+    const menu = this.menuPicker();
     console.log(menu);
 
     return (
       <div className="container">
         {menu &&
+          menu.length > 0 &&
           menu.map(recipe => {
             debugger;
             <Card key={recipe.recipe_id}>

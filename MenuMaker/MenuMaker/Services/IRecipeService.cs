@@ -6,6 +6,6 @@ namespace MenuMaker.Services
     public interface IRecipeService
     {
         List<Recipe> GetAll();
-        int Create(RecipeCreate recipe);
+        int Insert(RecipeInsert recipe);
     }
 }

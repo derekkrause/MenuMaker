@@ -15,9 +15,14 @@ class RecipeSearch extends React.Component {
 
   search = () => {
     if (this.state.search === "") {
-      recipe_getAll().then(res => this.setState({ recipes: res.data }, this.sendStateToProps));
+      recipe_getAll().then(res => this.setState({ recipes: res.data.recipes }, this.sendStateToProps));
     } else {
-      recipe_search(this.state.search, 1).then(res => this.setState({ recipes: res.data }, this.sendStateToProps));
+      recipe_search(this.state.search, 1).then(res =>
+        res.data.recipes.map(
+          recipe => this.setState({ recipes: [...this.state.recipes, recipe] }),
+          this.sendStateToProps
+        )
+      );
     }
   };
 

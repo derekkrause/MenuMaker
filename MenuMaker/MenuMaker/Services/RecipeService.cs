@@ -35,8 +35,13 @@ namespace MenuMaker.Services
                         var recipe = new Recipe
                         {
                             Id = (int)reader["id"],
+                            Publisher = (string)reader["publisher"],
+                            F2f_url = (string)reader["f2f_url"],
                             Title = (string)reader["title"],
-                            Ingredient = (string)reader["ingredient"],
+                            Source_url = (string)reader["source_url"],
+                            Recipe_id = (string)reader["recipe_id"],
+                            Image_url = (string)reader["image_url"],
+                            Publisher_url = (string)reader["publisher_url"],
                             DateCreated = (DateTime)reader["dateCreated"],
                             DateModified = (DateTime)reader["dateModified"]
                         };
@@ -48,15 +53,20 @@ namespace MenuMaker.Services
             }
         }
 
-        public int Create(RecipeCreate recipe)
+        public int Insert(RecipeInsert recipe)
         {
             using (var con = GetConnection())
             {
                 var cmd = con.CreateCommand();
-                cmd.CommandText = "Recipe_Create";
+                cmd.CommandText = "RECIPE_INSERT";
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@publisher", recipe.Publisher);
+                cmd.Parameters.AddWithValue("@f2f_url", recipe.F2f_url);
                 cmd.Parameters.AddWithValue("@title", recipe.Title);
-                cmd.Parameters.AddWithValue("@ingredient", recipe.Ingredient);
+                cmd.Parameters.AddWithValue("@source_url", recipe.Source_url);
+                cmd.Parameters.AddWithValue("@recipe_id", recipe.Recipe_id);
+                cmd.Parameters.AddWithValue("@image_url", recipe.Image_url);
+                cmd.Parameters.AddWithValue("@publisher_url", recipe.Publisher_url);
                 cmd.Parameters.Add("@id", SqlDbType.Int).Direction = ParameterDirection.Output;
 
                 cmd.ExecuteNonQuery();

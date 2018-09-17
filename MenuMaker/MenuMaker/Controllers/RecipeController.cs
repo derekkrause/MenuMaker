@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
-using MenuMaker.Models;
+﻿using MenuMaker.Models;
 using MenuMaker.Services;
+using System.Collections.Generic;
+using System.Web.Http;
 
 namespace MenuMaker.Controllers
 {
@@ -25,9 +22,10 @@ namespace MenuMaker.Controllers
         }
 
         [HttpPost, Route]
-        public int Create(RecipeCreate recipe)
+        public int Insert(RecipeInsert recipe)
         {
-            return recipeService.Create(recipe);
+            return recipeService.Insert(recipe);
         }
     }
+
 }
