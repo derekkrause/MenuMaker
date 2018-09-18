@@ -26,6 +26,12 @@ namespace MenuMaker.Controllers
         {
             return recipeService.Insert(recipe);
         }
+
+        [HttpGet, Route]
+        public List<Recipe> Search(string q)
+        {
+            return recipeService.Search(q);
+        }
     }
 
 }

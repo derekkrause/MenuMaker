@@ -7,5 +7,6 @@ namespace MenuMaker.Services
     {
         List<Recipe> GetAll();
         int Insert(RecipeInsert recipe);
+        List<Recipe> Search(string q);
     }
 }

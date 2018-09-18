@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardTitle, Input, Button } from "reactstrap";
+import { Card, CardTitle, Input } from "reactstrap";
 
 class IngredientSearch extends React.Component {
   state = {
@@ -29,7 +29,7 @@ class IngredientSearch extends React.Component {
     const { ingredients } = this.state;
     return (
       <div>
-        <Card body outline>
+        <Card body outline className="search">
           <CardTitle>
             Search Recipes
             <small> by ingredients</small>

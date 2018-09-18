@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { recipe_getAll, recipe_search } from "../server";
+import { recipe_getAll, recipe_search, recipe_search_sql } from "../server";
 import { Card, CardTitle, Input } from "reactstrap";
 
 class RecipeSearch extends React.Component {
@@ -13,16 +13,24 @@ class RecipeSearch extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  search = () => {
+  search = e => {
+    e.preventDefault();
     if (this.state.search === "") {
-      recipe_getAll().then(res => this.setState({ recipes: res.data.recipes }, this.sendStateToProps));
+      recipe_getAll().then(res => {
+        if (res.data.error) {
+          debugger;
+          recipe_search_sql("").then(res => this.setState({ recipes: res.data }, this.sendStateToProps));
+        } else {
+          debugger;
+          this.setState({ recipes: res.data.recipes }, this.sendStateToProps);
+        }
+      });
     } else {
-      recipe_search(this.state.search, 1).then(res =>
-        res.data.recipes.map(
-          recipe => this.setState({ recipes: [...this.state.recipes, recipe] }),
-          this.sendStateToProps
-        )
-      );
+      recipe_search(this.state.search, 1).then(res => {
+        if (res.data.error) {
+          recipe_search_sql(this.state.search).then(res => this.setState({ recipes: res.data }, this.sendStateToProps));
+        } else this.setState({ recipes: res.data.recipes }, this.sendStateToProps);
+      });
     }
   };
 
@@ -33,7 +41,7 @@ class RecipeSearch extends React.Component {
   render() {
     return (
       <div>
-        <Card body outline>
+        <Card body outline className="search">
           <CardTitle>
             Search Recipes
             <small> by keyword</small>

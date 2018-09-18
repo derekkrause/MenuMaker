@@ -9,3 +9,11 @@ export function recipe_getAll() {
 export function recipe_search(search, page) {
   return axios.post(url + "&q=" + search + "&page=" + page);
 }
+
+export function recipe_insert(recipe) {
+  return axios.post("api/recipes", recipe);
+}
+
+export function recipe_search_sql(search) {
+  return axios.get("api/recipes?q=" + search);
+}

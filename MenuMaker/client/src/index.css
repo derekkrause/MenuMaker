@@ -2,9 +2,7 @@ body,
 html {
   margin: 0;
   font-family: sans-serif;
-  height: 100%;
   color: black;
-  overflow: auto;
 }
 
 a.float-right {
@@ -84,10 +82,8 @@ li {
 .landingContainer,
 .mainContainer {
   background-attachment: fixed;
-  background-position: left;
   background-size: cover;
-  position: absolute;
-  height: 100%;
+  overflow: auto;
 }
 
 .form-control {

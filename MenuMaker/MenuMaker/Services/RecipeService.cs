@@ -41,9 +41,42 @@ namespace MenuMaker.Services
                             Source_url = (string)reader["source_url"],
                             Recipe_id = (string)reader["recipe_id"],
                             Image_url = (string)reader["image_url"],
-                            Publisher_url = (string)reader["publisher_url"],
-                            DateCreated = (DateTime)reader["dateCreated"],
-                            DateModified = (DateTime)reader["dateModified"]
+                            Publisher_url = (string)reader["publisher_url"]
+                        };
+
+                        recipes.Add(recipe);
+                    }
+                    return recipes;
+                }
+            }
+        }
+
+        public List<Recipe> Search(string q)
+        {
+            using (var con = GetConnection())
+            {
+                var cmd = con.CreateCommand();
+
+                cmd.CommandText = "Recipe_Search";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Search", q);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    var recipes = new List<Recipe>();
+
+                    while (reader.Read())
+                    {
+                        var recipe = new Recipe
+                        {
+                            Id = (int)reader["id"],
+                            Publisher = (string)reader["publisher"],
+                            F2f_url = (string)reader["f2f_url"],
+                            Title = (string)reader["title"],
+                            Source_url = (string)reader["source_url"],
+                            Recipe_id = (string)reader["recipe_id"],
+                            Image_url = (string)reader["image_url"],
+                            Publisher_url = (string)reader["publisher_url"]
                         };
 
                         recipes.Add(recipe);

@@ -10,10 +10,14 @@ class Header extends React.PureComponent {
         </NavbarBrand>
         <ButtonGroup>
           <Button outline>
-            <img className="navIcon" src="https://image.flaticon.com/icons/png/512/45/45332.png" />
+            <img className="navIcon" alt="Recipes Made" src="https://image.flaticon.com/icons/png/512/45/45332.png" />
           </Button>
           <Button outline>
-            <img className="navIcon" src="https://image.flaticon.com/icons/png/512/637/637178.png" />
+            <img
+              className="navIcon"
+              alt="Favorite Recipes"
+              src="https://image.flaticon.com/icons/png/512/637/637178.png"
+            />
           </Button>
         </ButtonGroup>
       </Navbar>
