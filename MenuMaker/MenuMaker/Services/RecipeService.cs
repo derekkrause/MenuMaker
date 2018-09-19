@@ -107,5 +107,31 @@ namespace MenuMaker.Services
                 return (int)cmd.Parameters["@id"].Value;
             }
         }
+
+        public void Favorite(RecipeId recipeId)
+        {
+            using (var con = GetConnection())
+            {
+                var cmd = con.CreateCommand();
+                cmd.CommandText = "Add_Favorite";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@recipeId", recipeId.recipeId);
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void DeleteFav(RecipeId recipeId)
+        {
+            using (var con = GetConnection())
+            {
+                var cmd = con.CreateCommand();
+                cmd.CommandText = "Delete_Favorite";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@recipeId", recipeId.recipeId);
+
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }

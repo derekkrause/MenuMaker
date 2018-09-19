@@ -17,3 +17,11 @@ export function recipe_insert(recipe) {
 export function recipe_search_sql(search) {
   return axios.get("api/recipes?q=" + search);
 }
+
+export function addFavorite(recipeId) {
+  return axios.post("api/recipes/favorite", recipeId);
+}
+
+export function deleteFavorite(recipeId) {
+  return axios.delete("api/recipes/favorite", recipeId);
+}

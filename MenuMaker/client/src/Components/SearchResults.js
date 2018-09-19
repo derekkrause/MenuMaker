@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { addFavorite } from "../server";
 import { Card, CardImg, CardBody, CardTitle, CardText, CardSubtitle } from "reactstrap";
 
 class SearchResults extends React.Component {
@@ -21,6 +22,13 @@ class SearchResults extends React.Component {
     }
   };
 
+  addFavorite = recipe => {
+    const recipeId = { recipeId: recipe };
+    addFavorite(recipeId)
+      .then(console.log("favorite added"))
+      .catch(console.log("already a favorite"));
+  };
+
   render() {
     const menu = this.menuPicker();
     console.log("menu", menu);
@@ -39,7 +47,7 @@ class SearchResults extends React.Component {
                     <CardSubtitle>{recipe.publisher}</CardSubtitle>
                     <div className="links">
                       <small>
-                        <a href="#" id={recipe.recipe_id} onClick={this.addFavorite}>
+                        <a href="#" onClick={() => this.addFavorite(recipe.recipe_id)}>
                           Add to Favorites
                         </a>
                       </small>

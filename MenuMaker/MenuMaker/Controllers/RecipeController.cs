@@ -21,6 +21,18 @@ namespace MenuMaker.Controllers
             return recipeService.GetAll();
         }
 
+        [HttpPost, Route("favorite")]
+        public void Favorite(RecipeId recipeId)
+        {
+            recipeService.Favorite(recipeId);
+        }
+
+        [HttpDelete, Route("favorite")]
+        public void DeleteFav(RecipeId recipeId)
+        {
+            recipeService.DeleteFav(recipeId);
+        }
+
         [HttpPost, Route]
         public int Insert(RecipeInsert recipe)
         {
