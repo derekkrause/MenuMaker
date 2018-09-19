@@ -5,10 +5,12 @@ import Body from "../Components/Body";
 class MainPage extends React.Component {
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Header />
-        <Body />
-      </div>
+        <div>
+          <Body />
+        </div>
+      </React.Fragment>
     );
   }
 }

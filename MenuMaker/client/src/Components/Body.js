@@ -11,8 +11,10 @@ class Body extends React.Component {
         style={{ backgroundImage: "url('https://image.ibb.co/i2ajS9/hardwood_material_rough_935875.jpg')" }}
       >
         <div className="mainBody">
-          <RecipeSearch />
-          <IngredientSearch />
+          <div className="search">
+            <RecipeSearch />
+            <IngredientSearch />
+          </div>
           <SearchResults {...this.props} />
         </div>
       </div>

@@ -12,17 +12,6 @@ a.float-right {
   font-style: normal;
 }
 
-small {
-  font-style: italic;
-  color: darkslategray;
-}
-
-ul {
-  padding-left: inherit;
-  padding-top: 8px;
-  list-style-type: circle;
-}
-
 li {
   border-bottom-color: cadetblue;
   border-bottom-width: thin;
@@ -31,17 +20,27 @@ li {
   font-style: italic;
 }
 
-.card {
-  max-width: 400px;
-  margin-top: 20px;
+small {
+  font-style: italic;
+  color: darkslategray;
 }
 
-.navIcon {
-  background-color: white;
-  height: 38px;
-  width: 38px;
-  border-radius: 50%;
-  padding: 1px;
+span.border {
+  letter-spacing: 6px;
+  background-color: #111;
+  color: #fff;
+  padding: 18px;
+  font-size: 25px;
+}
+
+span.border:hover {
+  cursor: pointer;
+}
+
+ul {
+  padding-left: inherit;
+  padding-top: 8px;
+  list-style-type: circle;
 }
 
 .btn-outline-success {
@@ -79,11 +78,9 @@ li {
   background-color: white;
 }
 
-.landingContainer,
-.mainContainer {
-  background-attachment: fixed;
-  background-size: cover;
-  overflow: auto;
+.card {
+  max-width: 400px;
+  margin-top: 20px;
 }
 
 .form-control {
@@ -94,22 +91,59 @@ li {
   border-radius: 0px;
 }
 
+.landingContainer,
+.mainContainer {
+  display: flex;
+  background-attachment: fixed;
+  background-size: cover;
+  overflow: auto;
+  min-height: 1000px;
+  padding-top: 80px;
+}
+
+.mainBody {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: "search results";
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+nav {
+  position: fixed !important;
+  width: 100%;
+  display: flex;
+  z-index: 2;
+}
+
+.navIcon {
+  background-color: white;
+  height: 38px;
+  width: 38px;
+  border-radius: 50%;
+  padding: 1px;
+}
+
+.results {
+  grid-area: results;
+  z-index: 0;
+}
+
+.search {
+  grid-area: search;
+  position: fixed;
+  width: 100%;
+}
+
 .title {
   top: 50%;
-  position: inherit;
+  position: absolute;
   text-align: center;
-}
-
-span.border {
-  background-color: #111;
-  color: #fff;
-  padding: 18px;
-  font-size: 25px;
-  letter-spacing: 6px;
-}
-
-span.border:hover {
-  cursor: pointer;
 }
 
 ::placeholder {

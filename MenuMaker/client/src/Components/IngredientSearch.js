@@ -29,7 +29,7 @@ class IngredientSearch extends React.Component {
     const { ingredients } = this.state;
     return (
       <div>
-        <Card body outline className="search">
+        <Card body outline>
           <CardTitle>
             Search Recipes
             <small> by ingredients</small>

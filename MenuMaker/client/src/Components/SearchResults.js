@@ -26,20 +26,27 @@ class SearchResults extends React.Component {
     console.log("menu", menu);
 
     return (
-      <div className="container-fluid">
+      <div className="container-fluid results">
         {menu &&
           menu.length > 0 &&
           menu.map(recipe => {
             return (
-              <div>
-                <Card key={recipe.recipe_id} className="m-4">
+              <div className="result" key={recipe.recipe_id}>
+                <Card>
                   <CardImg top width="100%" src={recipe.image_url} />
                   <CardBody>
                     <CardTitle>{recipe.title}</CardTitle>
                     <CardSubtitle>{recipe.publisher}</CardSubtitle>
-                    <a className="float-right" href={recipe.f2f_url}>
-                      View Recipe
-                    </a>
+                    <div className="links">
+                      <small>
+                        <a href="#" id={recipe.recipe_id} onClick={this.addFavorite}>
+                          Add to Favorites
+                        </a>
+                      </small>
+                      <small>
+                        <a href={recipe.f2f_url}>View Recipe</a>
+                      </small>
+                    </div>
                   </CardBody>
                 </Card>
               </div>

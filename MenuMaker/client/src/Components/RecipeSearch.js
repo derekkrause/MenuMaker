@@ -18,10 +18,8 @@ class RecipeSearch extends React.Component {
     if (this.state.search === "") {
       recipe_getAll().then(res => {
         if (res.data.error) {
-          debugger;
           recipe_search_sql("").then(res => this.setState({ recipes: res.data }, this.sendStateToProps));
         } else {
-          debugger;
           this.setState({ recipes: res.data.recipes }, this.sendStateToProps);
         }
       });
@@ -41,7 +39,7 @@ class RecipeSearch extends React.Component {
   render() {
     return (
       <div>
-        <Card body outline className="search">
+        <Card body outline>
           <CardTitle>
             Search Recipes
             <small> by keyword</small>
