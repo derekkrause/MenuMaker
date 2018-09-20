@@ -1,6 +1,7 @@
 const initialState = {
   recipes: [],
-  ingredients: []
+  ingredients: [],
+  favorites: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -9,6 +10,8 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, recipes: [...state.recipes, action.payload] };
     case "ADD_INGREDIENT":
       return { ...state, ingredients: [...state.ingredients, action.payload] };
+    case "ADD_FAVORITE":
+      return { ...state, favorites: [...state.favorites, action.payload] };
     default:
       return state;
   }

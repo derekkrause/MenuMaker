@@ -5,28 +5,23 @@ import { Card, CardImg, CardBody, CardTitle, CardText, CardSubtitle } from "reac
 
 class SearchResults extends React.Component {
   menuPicker = () => {
-    const recipes = [];
-    if (this.props.recipes.length != 1) {
-      console.log("length != 1", this.props.recipes);
-      recipes.push({
-        title: "Jalapeno Popper Grilled Cheese Sandwich",
-        image_url: "http://static.food2fork.com/Jalapeno2BPopper2BGrilled2BCheese2BSandwich2B12B500fd186186.jpg",
-        recipe_id: 1,
-        publisher: "Closet Cooking",
-        f2f_url: "https://www.food2fork.com/view/Jalapeno_Popper_Grilled_Cheese_Sandwich/35382"
-      });
-      return recipes;
-    } else {
-      console.log("length = 1", this.props.recipes);
+    console.log(this.props);
+    debugger;
+    if (this.props.recipes && this.props.recipes.length === 1) {
       return this.props.recipes.pop();
-    }
+    } else return [];
   };
 
-  addFavorite = recipe => {
-    const recipeId = { recipeId: recipe };
-    addFavorite(recipeId)
-      .then(console.log("favorite added"))
+  addFavoriteRecipe = recipe => {
+    const favorite = { recipeId: recipe };
+    debugger;
+    addFavorite(favorite)
+      .then(() => {
+        console.log("favorite", recipe);
+        this.props.addFavoriteToStore(favorite);
+      })
       .catch(console.log("already a favorite"));
+    debugger;
   };
 
   render() {
@@ -47,7 +42,7 @@ class SearchResults extends React.Component {
                     <CardSubtitle>{recipe.publisher}</CardSubtitle>
                     <div className="links">
                       <small>
-                        <a href="#" onClick={() => this.addFavorite(recipe.recipe_id)}>
+                        <a href="#" onClick={() => this.addFavoriteRecipe(recipe.recipe_id)}>
                           Add to Favorites
                         </a>
                       </small>
@@ -69,4 +64,13 @@ function mapStateToProps(state) {
   return { recipes: state.recipes };
 }
 
-export default connect(mapStateToProps)(SearchResults);
+function mapDispatchToProps(dispatch) {
+  return {
+    addFavoriteToStore: recipe => dispatch({ type: "ADD_FAVORITE", payload: recipe })
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SearchResults);

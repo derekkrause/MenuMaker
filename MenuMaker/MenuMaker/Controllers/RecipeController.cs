@@ -2,6 +2,7 @@
 using MenuMaker.Services;
 using System.Collections.Generic;
 using System.Web.Http;
+using System.Net.Http;
 
 namespace MenuMaker.Controllers
 {
@@ -24,12 +25,14 @@ namespace MenuMaker.Controllers
         [HttpPost, Route("favorite")]
         public void Favorite(RecipeId recipeId)
         {
+            //Need to add HttpResponseMessage
             recipeService.Favorite(recipeId);
         }
 
         [HttpDelete, Route("favorite")]
         public void DeleteFav(RecipeId recipeId)
         {
+            //Need to add HttpResponseMessage
             recipeService.DeleteFav(recipeId);
         }
 
