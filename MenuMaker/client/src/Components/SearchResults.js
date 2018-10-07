@@ -1,12 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addFavorite } from "../server";
+import { addFavorite, deleteFavorite } from "../server";
 import { Card, CardImg, CardBody, CardTitle, CardText, CardSubtitle } from "reactstrap";
 
 class SearchResults extends React.Component {
   menuPicker = () => {
     console.log(this.props);
-    debugger;
     if (this.props.recipes && this.props.recipes.length === 1) {
       return this.props.recipes.pop();
     } else return [];
@@ -14,14 +13,22 @@ class SearchResults extends React.Component {
 
   addFavoriteRecipe = recipe => {
     const favorite = { recipeId: recipe };
-    debugger;
     addFavorite(favorite)
       .then(() => {
         console.log("favorite", recipe);
         this.props.addFavoriteToStore(favorite);
       })
       .catch(console.log("already a favorite"));
-    debugger;
+  };
+
+  removeFavorite = recipe => {
+    const favorite = { recipeId: recipe };
+    deleteFavorite(favorite)
+      .then(() => {
+        console.log("Favorite removed", recipe);
+        this.props.removeFavoriteFromStore(favorite);
+      })
+      .catch(console.log("unable to remove"));
   };
 
   render() {
@@ -42,12 +49,18 @@ class SearchResults extends React.Component {
                     <CardSubtitle>{recipe.publisher}</CardSubtitle>
                     <div className="links">
                       <small>
-                        <a href="#" onClick={() => this.addFavoriteRecipe(recipe.recipe_id)}>
+                        <button
+                          type="button"
+                          className="btn btn-favorite"
+                          onClick={() => this.addFavoriteRecipe(recipe.recipe_id)}
+                        >
                           Add to Favorites
-                        </a>
+                        </button>
                       </small>
                       <small>
-                        <a href={recipe.f2f_url}>View Recipe</a>
+                        <a href={recipe.f2f_url} target="_blank">
+                          View Recipe
+                        </a>
                       </small>
                     </div>
                   </CardBody>
@@ -66,7 +79,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    addFavoriteToStore: recipe => dispatch({ type: "ADD_FAVORITE", payload: recipe })
+    addFavoriteToStore: recipe => dispatch({ type: "ADD_FAVORITE", payload: recipe }),
+    removeFavoriteFromStore: recipe => dispatch({ type: "REMOVE_FAVORITE", payload: recipe })
   };
 }
 

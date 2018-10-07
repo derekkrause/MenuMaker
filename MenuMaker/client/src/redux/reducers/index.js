@@ -12,6 +12,11 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, ingredients: [...state.ingredients, action.payload] };
     case "ADD_FAVORITE":
       return { ...state, favorites: [...state.favorites, action.payload] };
+    case "REMOVE_FAVORITE":
+      return {
+        ...state,
+        favorites: [...state.favorites.slice(0, action.payload), ...state.favorites.slice(action.payload + 1)]
+      };
     default:
       return state;
   }

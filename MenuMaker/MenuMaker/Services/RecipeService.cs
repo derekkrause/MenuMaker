@@ -116,8 +116,14 @@ namespace MenuMaker.Services
                 cmd.CommandText = "Add_Favorite";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@recipeId", recipeId.recipeId);
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (SqlException e) when (e.Message.Contains("duplicate"))
+                {
 
-                cmd.ExecuteNonQuery();
+                }
             }
         }
 
